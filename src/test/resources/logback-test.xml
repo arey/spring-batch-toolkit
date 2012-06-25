@@ -1,0 +1,20 @@
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%-30(%d [%thread]) %-5level %logger [%line] - %msg %xEx{3}%n</Pattern>
+    </layout>
+  </appender>
+
+  <logger name="org.springframework" level="INFO"/>
+  <logger name="org.springframework.jdbc" level="DEBUG"/>
+  <logger name="org.springframework.dao" level="DEBUG"/>
+  
+  <logger name="com.javaetmoi.core.batch" level="DEBUG"/>
+
+  <root>
+    <level value="INFO" />
+    <appender-ref ref="CONSOLE" />
+  </root>
+
+</configuration>

@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.javaetmoi.core</groupId>
+  <artifactId>spring-batch-toolkit</artifactId>
+  <name>JavaEtMoi Core :: ${project.artifactId} - ${project.packaging}</name>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <description>Extension of the Spring Batch module</description>
+  <inceptionYear>2012</inceptionYear>
+  <url>https://github.com/arey/spring-batch-toolkit</url>
+
+  <developers>
+    <developer>
+      <id>arey</id>
+      <name>Antoine Rey</name>
+      <email>antoine@javaetmoi.com</email>
+      <url>http://javaetmoi.com</url>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <!-- Continous Integration build hosted by CloudBees -->
+  <ciManagement>
+    <system>jenkins</system>
+    <url>https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/</url>
+  </ciManagement>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/arey/spring-batch-toolkit/issues</url>
+  </issueManagement>
+
+  <!-- Apache 2 license -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+
+  <!-- GitHub Software Configuration Management -->
+  <scm>
+    <url>https://github.com/arey/spring-batch-toolkit</url>
+    <connection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</developerConnection>
+  </scm>
+
+
+
+  <properties>
+    <!-- Version of third libraries -->
+    <version.logback>1.0.0</version.logback>
+    <version.slf4j>1.6.4</version.slf4j>
+    <version.spring-framework>3.1.1.RELEASE</version.spring-framework>
+    <version.commons-lang3>3.1</version.commons-lang3>
+    <version.spring-batch>2.1.8.RELEASE</version.spring-batch>
+    <version.commons-logging>99.0-does-not-exist</version.commons-logging>
+
+    <!-- * For testing purpose -->
+    <version.junit>4.10</version.junit>
+    <version.h2>1.3.164</version.h2>
+
+
+    <!-- Version of maven plugins -->
+    <version.plugin.maven-eclipse-plugin>2.9</version.plugin.maven-eclipse-plugin>
+    <version.plugin.maven-compiler-plugin>2.3</version.plugin.maven-compiler-plugin>
+    <version.plugin.maven-resources-plugin>2.4.3</version.plugin.maven-resources-plugin>
+    <version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
+    <version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
+    <version.plugin.maven-release-plugin>2.2.2</version.plugin.maven-release-plugin>
+    
+    <!-- Version of maven extensions -->
+    <version.extension.wagon-webdav>1.0-beta-2</version.extension.wagon-webdav>
+    
+
+    <!-- Source encoding -->
+    <source.encoding>UTF-8</source.encoding>
+  </properties>
+
+  <dependencies>
+    <!-- Spring Batch -->
+    <dependency>
+      <groupId>org.springframework.batch</groupId>
+      <artifactId>spring-batch-core</artifactId>
+      <version>${version.spring-batch}</version>
+    </dependency>
+    <!-- Spring Test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring Core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring AOP -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring Beans -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring Context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring JDBC -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>
+    <!-- Spring Transaction -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${version.spring-framework}</version>
+    </dependency>    
+    <!-- Commons Lang -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${version.commons-lang3}</version>
+    </dependency>
+    <!-- Logger -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${version.logback}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${version.slf4j}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>${version.commons-logging}</version>
+    </dependency>
+
+    <!-- H2 Embbeded database -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${version.h2}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Tests -->
+    <!-- * JUnit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>${version.extension.wagon-webdav}</version>
+      </extension>
+    </extensions>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.plugin.maven-compiler-plugin}</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <encoding>${source.encoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${version.plugin.maven-resources-plugin}</version>
+        <configuration>
+          <encoding>${source.encoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${version.plugin.maven-source-plugin}</version>
+        <configuration>
+          <encoding>${source.encoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${version.plugin.maven-release-plugin}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.plugin.maven-javadoc-plugin}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- Deploy releases and snapshots to the CloudBees maven repositories -->
+  <distributionManagement>
+    <downloadUrl>https://github.com/arey/spring-batch-toolkit</downloadUrl>
+    <repository>
+      <id>javaetmoi-cloudbees-release</id>
+      <name>javaetmoi-cloudbees-release</name>
+      <url>dav:https://repository-javaetmoi.forge.cloudbees.com/release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>javaetmoi-cloudbees-snapshot</id>
+      <name>javaetmoi-cloudbees-snapshot</name>
+      <url>dav:https://repository-javaetmoi.forge.cloudbees.com/snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>javaetmoi-cloudbees-release</id>
+      <name>javaetmoi-cloudbees-release</name>
+      <url>https://repository-javaetmoi.forge.cloudbees.com/release/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>javaetmoi-cloudbees-snapshot</id>
+      <name>javaetmoi-cloudbees-snapshot</name>
+      <url>https://repository-javaetmoi.forge.cloudbees.com/snapshot/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <profiles>
+    <profile>
+      <id>eclipse</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-eclipse-plugin</artifactId>
+              <version>${version.plugin.maven-eclipse-plugin}</version>
+              <configuration>
+                <wtpversion>2.0</wtpversion>
+                <downloadSources>true</downloadSources>
+                <downloadJavadocs>true</downloadJavadocs>
+                <ajdtVersion>none</ajdtVersion>
+                <useProjectReferences>true</useProjectReferences>
+                <additionalProjectnatures>
+                  <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                </additionalProjectnatures>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- Specific profile for release or artifact deployment -->
+      <!-- Sources et javadoc are packaged -->
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+
+</project>
