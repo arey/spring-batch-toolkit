@@ -7,8 +7,8 @@
   </appender>
 
   <logger name="org.springframework" level="INFO"/>
-  <logger name="org.springframework.jdbc" level="DEBUG"/>
-  <logger name="org.springframework.dao" level="DEBUG"/>
+<!--   <logger name="org.springframework.jdbc" level="DEBUG"/> -->
+<!--   <logger name="org.springframework.dao" level="DEBUG"/> -->
   
   <logger name="com.javaetmoi.core.batch" level="DEBUG"/>
 

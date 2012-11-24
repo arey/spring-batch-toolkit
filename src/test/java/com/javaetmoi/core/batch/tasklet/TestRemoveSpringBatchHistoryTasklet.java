@@ -22,14 +22,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.SimpleJdbcTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.javaetmoi.core.batch.test.AbstractSpringBatchTest;
+
 /**
  * Unit test of the {@link RemoveSpringBatchHistoryTasklet}
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-@Transactional("repositoryTransactionManager")
-public class TestRemoveSpringBatchHistoryTasklet {
+@Transactional
+public class TestRemoveSpringBatchHistoryTasklet extends AbstractSpringBatchTest {
 
     @Autowired
     private RemoveSpringBatchHistoryTasklet removeSpringBatchHistoryTasklet;

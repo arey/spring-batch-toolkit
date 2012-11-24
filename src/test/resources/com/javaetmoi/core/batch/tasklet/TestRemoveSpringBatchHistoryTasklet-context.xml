@@ -21,20 +21,6 @@
   
 
   <!-- Jdbc Template used to query the Spring Batch database -->
-  <bean id="jobRepositoryJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" c:dataSource-ref="repositoryDataSource" />
-
-  <!-- Create an in-memory Spring Batch database from the schema included into the spring-batch-core module -->
-  <jdbc:embedded-database id="repositoryDataSource" type="H2">
-    <jdbc:script location="classpath:org/springframework/batch/core/schema-h2.sql" />
-  </jdbc:embedded-database>
-
-  <!-- Spring Batch repository transaction manager -->
-  <bean id="repositoryTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-    p:dataSource-ref="repositoryDataSource" />
-
-
-  <!-- Job explorer allow to browse the spring batch database -->
-  <bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
-    p:dataSource-ref="repositoryDataSource" />
+  <bean id="jobRepositoryJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" c:dataSource-ref="dataSource" />
 
 </beans>

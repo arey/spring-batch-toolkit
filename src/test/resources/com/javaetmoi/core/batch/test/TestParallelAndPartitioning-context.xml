@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:batch="http://www.springframework.org/schema/batch"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="
+           http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/batch    http://www.springframework.org/schema/batch/spring-batch-2.1.xsd           
+           http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.1.xsd    
+           http://www.springframework.org/schema/jdbc     http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+           http://www.springframework.org/schema/task     http://www.springframework.org/schema/task/spring-task-3.1.xsd                             
+        ">
+
+  <!-- Initialize database with 8 movies and 11 music albums -->
+  <jdbc:initialize-database>
+    <jdbc:script location="classpath:com/javaetmoi/core/batch/test/TestParallelAndPartitioning.sql" />
+  </jdbc:initialize-database>
+
+  <!-- Thread pools : 1 thread for stepLogMovie and 3 threads for stepLogMusicAlbum -->
+  <task:executor id="batchTaskExecutor" pool-size="4" />
+
+  <!-- Job combining both parallel steps and an local partitions -->
+  <batch:job id="parallelAndPartitioningJob">
+    <batch:split id="splitIndexDelta" task-executor="batchTaskExecutor" next="stepEnd">
+      <!-- 2 parall steps. The first one will be partitioned -->
+      <batch:flow parent="flowMusicAlbum" />
+      <batch:flow parent="flowMovie" />
+    </batch:split>
+    <!-- The stepEnd will be executed after the 2 flows flowMusicAlbum and flowMovie -->
+    <batch:step id="stepEnd">
+      <batch:tasklet>
+        <bean class="com.javaetmoi.core.batch.test.EndTasklet" />
+      </batch:tasklet>
+    </batch:step>
+  </batch:job>
+
+  <!-- The music flow is composed of a single step which is partitioned -->
+  <batch:flow id="flowMusicAlbum">
+    <batch:step id="stepLogMusicAlbum">
+      <!-- Executes partition steps locally in separate threads of execution -->
+      <batch:partition step="stepLogMusicAlbumPartition" partitioner="partitionerMusicAlbum">
+        <batch:handler grid-size="2" task-executor="batchTaskExecutor" />
+      </batch:partition>
+    </batch:step>
+  </batch:flow>
+
+  <!-- The partitioner finds the minimum and maximum primary keys in the music album table to obtain a count of rows and 
+    then calculates the number of rows in the partition -->
+  <bean id="partitionerMusicAlbum" class="com.javaetmoi.core.batch.partition.ColumnRangePartitioner">
+    <property name="dataSource" ref="dataSource" />
+    <property name="table" value="music_album" />
+    <property name="column" value="album_id" />
+  </bean>
+
+  <!-- Read music albums from database then write them into logs -->
+  <batch:step id="stepLogMusicAlbumPartition">
+    <batch:tasklet>
+      <batch:chunk reader="readerMusicAlbum" writer="anyObjectWriter" commit-interval="2" />
+    </batch:tasklet>
+  </batch:step>
+
+  <!-- JdbcCursorItemReader in charge of selecting music albums by id range -->
+  <bean id="readerMusicAlbum" class="org.springframework.batch.item.database.JdbcCursorItemReader" scope="step"
+    p:dataSource-ref="dataSource">
+    <property name="rowMapper">
+      <bean class="org.springframework.jdbc.core.BeanPropertyRowMapper" c:mappedClass="com.javaetmoi.core.batch.test.MusicAlbum" />
+    </property>
+    <property name="sql">
+      <value><![CDATA[
+                select a.masterpiece_id as id, name, year, band
+                from masterpiece a 
+                    inner join music_album b on a.masterpiece_id=b.masterpiece_id
+                where genre='Music'
+                      and  b.album_id >= ? and b.album_id <= ?
+            ]]></value>
+    </property>
+    <property name="preparedStatementSetter">
+      <bean class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
+        <property name="parameters">
+          <list>
+            <!-- SPeL parameters order is important because it referes to "where album_id >= ? and album_id <= ?" -->
+            <value>#{stepExecutionContext[minValue]}</value>
+            <value>#{stepExecutionContext[maxValue]}</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+  
+  <!-- The movie flow is composed of a single step that reads all movies then log them -->  
+  <batch:flow id="flowMovie">
+    <batch:step id="stepLogMovie">
+      <batch:tasklet>
+        <batch:chunk writer="anyObjectWriter" commit-interval="2">
+          <batch:reader>
+            <bean class="org.springframework.batch.item.database.JdbcCursorItemReader" p:dataSource-ref="dataSource">
+              <property name="rowMapper">
+                <bean class="org.springframework.jdbc.core.BeanPropertyRowMapper" c:mappedClass="com.javaetmoi.core.batch.test.Movie" />
+              </property>
+              <property name="sql">
+                <value><![CDATA[
+                select a.masterpiece_id as id, name, year, realisator, actors
+                from masterpiece a 
+                    inner join movie b on a.masterpiece_id=b.masterpiece_id
+                where genre='Movie'
+            ]]></value>
+              </property>
+            </bean>
+          </batch:reader>
+        </batch:chunk>
+      </batch:tasklet>
+    </batch:step>
+  </batch:flow>
+
+  <!-- Logs each content item by reflection -->
+  <bean id="anyObjectWriter" class="com.javaetmoi.core.batch.writer.ConsoleItemWriter" />
+
+</beans>
