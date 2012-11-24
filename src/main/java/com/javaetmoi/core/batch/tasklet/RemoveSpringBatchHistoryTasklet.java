@@ -21,7 +21,7 @@ import org.springframework.util.StringUtils;
  * Tasklet used to delete data from Spring Batch Metadata tables that are N months old.
  * 
  * <p>
- * The row numbers in the 5 tables of Spring Batch may increase a lot. This tasklet cleans the
+ * The row numbers in the 6 tables of Spring Batch may increase a lot. This tasklet cleans the
  * Spring Batch database by removing old job instances executions and keep the historic of recent
  * job executions (last 6 months by default).<br>
  * Spring Batch tables prefix could be customized by the {@link #setTablePrefix(String)}<br>
@@ -29,6 +29,7 @@ import org.springframework.util.StringUtils;
  * </p>
  * 
  * @see https://jira.springsource.org/browse/BATCH-1747
+ * @author arey
  * 
  */
 public class RemoveSpringBatchHistoryTasklet implements Tasklet, InitializingBean {
