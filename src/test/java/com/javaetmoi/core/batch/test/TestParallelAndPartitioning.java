@@ -72,7 +72,7 @@ public class TestParallelAndPartitioning extends AbstractSpringBatchTest {
         assertEquals("First partition processed 6 music albums", 6, stepExecPart0.getWriteCount());
         StepExecution stepExecPart1 = getStepExecution(execution,
                 "stepLogMusicAlbumPartition:partition1");
-        assertEquals("Second partition processed 5 music album", 5, stepExecPart1.getWriteCount());
+        assertEquals("Second partition processed 5 music albums", 5, stepExecPart1.getWriteCount());
     }
 
     private StepExecution getStepExecution(JobExecution jobExecution, String stepName) {
