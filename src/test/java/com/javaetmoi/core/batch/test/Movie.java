@@ -19,4 +19,20 @@ public class Movie extends Masterpiece {
 
     private String actors;
 
+    public String getRealisator() {
+        return realisator;
+    }
+
+    public void setRealisator(String realisator) {
+        this.realisator = realisator;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
+
 }
