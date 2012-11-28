@@ -20,10 +20,6 @@
     p:dataSource-ref="dataSource" />
 
 
-  <!-- The Job explorer allows to browse the spring batch database -->
-  <bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
-    p:dataSource-ref="dataSource" />
-
   <!-- Helps with testing (autowired, injected in the test instance) -->
   <bean class="org.springframework.batch.test.JobLauncherTestUtils" lazy-init="true" />
 

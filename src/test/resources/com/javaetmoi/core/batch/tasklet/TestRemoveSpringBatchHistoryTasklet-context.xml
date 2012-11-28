@@ -15,6 +15,10 @@
             http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd                  
         ">
 
+  <!-- The Job explorer allows to browse the spring batch database -->
+  <bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
+    p:dataSource-ref="dataSource" />
+
   <!-- Tested Spring bean with a data retention of a single month -->
   <bean id="removeSpringBatchHistoryTasklet" class="com.javaetmoi.core.batch.tasklet.RemoveSpringBatchHistoryTasklet"
     p:jdbcTemplate-ref="jobRepositoryJdbcTemplate" p:historicRetentionMonth="1"/>
