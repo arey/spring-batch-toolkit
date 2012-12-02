@@ -50,6 +50,11 @@ If you're using an IDE that supports Maven-based projects (InteliJ Idea, Netbean
 Otherwise, generate IDE metadata with the related IDE maven plugin:
 mvn eclipse:clean eclipse:eclipse
 
+## Documentation ##
+
+French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
+* [Parallélisation de traitements batchs](http://javaetmoi.com/2012/12/parallelisation-de-traitements-batchs/)
+* [Spring Batch s’auto-nettoie](http://javaetmoi.com/2012/06/sprint-batch-sauto-nettoie/)
 
 ## Credits ##
 
