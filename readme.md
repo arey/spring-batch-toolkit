@@ -56,6 +56,21 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
 * [Parallélisation de traitements batchs](http://javaetmoi.com/2012/12/parallelisation-de-traitements-batchs/)
 * [Spring Batch s’auto-nettoie](http://javaetmoi.com/2012/06/sprint-batch-sauto-nettoie/)
 
+
+## Release Note ##
+
+<table>
+  <tr>
+    <th>Version</th><th>Release date</th><th>Features date</th>
+  </tr>
+  <tr>
+    <td>0.2-SNAPSHOT</td>next version<td>Spring Batch 2.2 upgrade</td><td></td>
+  </tr>
+  <tr>
+    <td>0.1</td><td>10/07/2013</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
+  </tr>
+</table>
+
 ## Credits ##
 
 * Uses [Maven](http://maven.apache.org/) as a build tool
