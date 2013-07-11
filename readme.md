@@ -64,7 +64,7 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features date</th>
   </tr>
   <tr>
-    <td>0.2-SNAPSHOT</td>next version<td>Spring Batch 2.2 upgrade</td><td></td>
+    <td>0.2-SNAPSHOT</td><td>next version</td><td>Spring Batch 2.2 upgrade</td>
   </tr>
   <tr>
     <td>0.1</td><td>10/07/2013</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
