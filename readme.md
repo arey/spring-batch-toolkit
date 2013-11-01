@@ -74,4 +74,13 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
 ## Credits ##
 
 * Uses [Maven](http://maven.apache.org/) as a build tool
-* Uses [Cloudbees](http://www.cloudbees.com/foss) for continuous integration builds whenever code is pushed into GitHub
+* Uses [Cloudbees](http://www.cloudbees.com/foss) and [Travis CI](www.travis-ci.org) for continuous integration builds whenever code is pushed into GitHub
+
+## Build Status ##
+
+Travis : [![Build
+Status](https://travis-ci.org/arey/spring-batch-toolkit.png?branch=master)](https://travis-ci.org/arey/spring-batch-toolkit)
+
+Cloudbees Jenkins : [![Build
+Status](https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/badge/icon)](https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/)
+
