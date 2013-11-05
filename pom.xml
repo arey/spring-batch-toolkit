@@ -5,7 +5,7 @@
   <groupId>com.javaetmoi.core</groupId>
   <artifactId>spring-batch-toolkit</artifactId>
   <name>JavaEtMoi Core :: ${project.artifactId} - ${project.packaging}</name>
-  <version>0.2.0</version>
+  <version>0.3.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>Extension of the Spring Batch module</description>
   <inceptionYear>2012</inceptionYear>
