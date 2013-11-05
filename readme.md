@@ -6,6 +6,7 @@ This toolkit provides additional features to the Spring Batch framework.
 
 * Tasklet used to **delete data from Spring Batch Metadata tables** that are N months old.
 * **Elasticsearch** tasklets, processor and writer to create/setup/delete indices and write documents.
+* Logging Spring Batch listener
 
 
 ## Quick Start ##
