@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.javaetmoi.core</groupId>
@@ -58,11 +59,14 @@
     <version.slf4j>1.7.2</version.slf4j>
     <version.spring-framework>3.2.3.RELEASE</version.spring-framework>
     <version.commons-lang3>3.1</version.commons-lang3>
+    <version.commons-io>2.4</version.commons-io>
     <version.spring-batch>2.2.0.RELEASE</version.spring-batch>
+    <version.elasticsearch>0.90.5</version.elasticsearch>
 
     <!-- * For testing purpose -->
     <version.junit>4.11</version.junit>
     <version.h2>1.3.170</version.h2>
+    <version.spring-elasticsearch>0.2.0</version.spring-elasticsearch>
 
 
     <!-- Version of maven plugins -->
@@ -72,10 +76,10 @@
     <version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
     <version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
     <version.plugin.maven-release-plugin>2.2.2</version.plugin.maven-release-plugin>
-    
+
     <!-- Version of maven extensions -->
     <version.extension.wagon-webdav>1.0-beta-2</version.extension.wagon-webdav>
-    
+
 
     <!-- Source encoding -->
     <source.encoding>UTF-8</source.encoding>
@@ -93,7 +97,7 @@
       <artifactId>spring-batch-test</artifactId>
       <version>${version.spring-batch}</version>
       <scope>test</scope>
-    </dependency>    
+    </dependency>
     <!-- Spring Test -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -135,12 +139,18 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
       <version>${version.spring-framework}</version>
-    </dependency>    
+    </dependency>
     <!-- Commons Lang -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>${version.commons-lang3}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${version.commons-io}</version>
+      <optional>true</optional> <!-- Used by Elasticsearch tasklets -->
     </dependency>
     <!-- Logger -->
     <dependency>
@@ -153,6 +163,23 @@
       <artifactId>jcl-over-slf4j</artifactId>
       <version>${version.slf4j}</version>
     </dependency>
+
+    <!-- Elasticsearch -->
+    <dependency>
+      <groupId>org.elasticsearch</groupId>
+      <artifactId>elasticsearch</artifactId>
+      <version>${version.elasticsearch}</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- * Spring Elasticsearch -->
+    <dependency>
+      <groupId>fr.pilato.spring</groupId>
+      <artifactId>spring-elasticsearch</artifactId>
+      <version>${version.spring-elasticsearch}</version>
+      <scope>test</scope>
+    </dependency>
+    
+
 
     <!-- H2 Embbeded database -->
     <dependency>

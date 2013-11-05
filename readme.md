@@ -1,20 +1,22 @@
 # Spring Batch Toolkit #
 
-This toolkit provides additional features to Spring Batch.
+This toolkit provides additional features to the Spring Batch framework.
 
 ## Features ##
 
-* Tasklet used to delete data from Spring Batch Metadata tables that are N months old.
+* Tasklet used to **delete data from Spring Batch Metadata tables** that are N months old.
+* **Elasticsearch** tasklets, processor and writer to create/setup/delete indices and write documents.
 
 
 ## Quick Start ##
 
 Download the jar though Maven:
+
 ```xml
 <dependency>
   <groupId>com.javaetmoi.core</groupId>
   <artifactId>spring-batch-toolkit</artifactId>
-  <version>0.1</version>
+  <version>0.2</version>
 </dependency> 
        
 <repository>
@@ -24,13 +26,6 @@ Download the jar though Maven:
   </releases>
   <name>Java & Moi Maven RELEASE Repository</name>
   <url>http://repository-javaetmoi.forge.cloudbees.com/release/</url>
-</repository>
-```
-
-```xml
-
-<repository>
-
 </repository>
 ```
 
@@ -53,6 +48,7 @@ mvn eclipse:clean eclipse:eclipse
 ## Documentation ##
 
 French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
+
 * [Parallélisation de traitements batchs](http://javaetmoi.com/2012/12/parallelisation-de-traitements-batchs/)
 * [Spring Batch s’auto-nettoie](http://javaetmoi.com/2012/06/sprint-batch-sauto-nettoie/)
 
@@ -61,10 +57,13 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
 
 <table>
   <tr>
-    <th>Version</th><th>Release date</th><th>Features date</th>
+    <th>Version</th><th>Release date</th><th>Features</th>
+  </tr>
+<tr>
+    <td>0.3-SNAPSHOT</td><td>next version</td><td></td>
   </tr>
   <tr>
-    <td>0.2-SNAPSHOT</td><td>next version</td><td>Spring Batch 2.2 upgrade</td>
+    <td>0.2</td><td>09/11/2013</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
   </tr>
   <tr>
     <td>0.1</td><td>10/07/2013</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>

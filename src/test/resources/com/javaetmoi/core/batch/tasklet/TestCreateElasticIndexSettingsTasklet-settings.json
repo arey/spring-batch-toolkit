@@ -1,0 +1,18 @@
+{
+    "index": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,    
+        "analysis": {
+          "analyzer": {
+            "myStandardAnalyzer": {
+              "filter": [
+                "standard",
+                "lowercase",
+                "asciifolding"
+              ],
+              "type": "custom",
+              "tokenizer": "standard"
+            }         }
+        }
+    }         
+}
