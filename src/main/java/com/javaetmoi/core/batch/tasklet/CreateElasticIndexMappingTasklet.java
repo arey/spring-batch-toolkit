@@ -99,6 +99,8 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
 
     /**
      * Sets the JSON resource defining index mapping.
+     * <p>
+     * File has to be encoded in UTF-8.
      * 
      * @param indexMapping
      *            Spring resource descriptor, such as a file or class path resource.

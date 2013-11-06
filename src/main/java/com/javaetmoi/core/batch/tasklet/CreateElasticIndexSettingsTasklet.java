@@ -79,6 +79,8 @@ public class CreateElasticIndexSettingsTasklet implements Tasklet {
 
     /**
      * Sets the name of the index where documents will be stored
+     * <p>
+     * File has to be encoded in UTF-8.
      * 
      * @param indexName
      *            name of the Elasticsearch index
