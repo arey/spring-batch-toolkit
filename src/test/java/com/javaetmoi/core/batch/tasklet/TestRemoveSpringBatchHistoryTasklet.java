@@ -16,10 +16,10 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.jdbc.SimpleJdbcTestUtils;
+import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaetmoi.core.batch.test.AbstractSpringBatchTest;
@@ -47,10 +47,10 @@ public class TestRemoveSpringBatchHistoryTasklet extends AbstractSpringBatchTest
         // 1. Prepare test dataset
         Resource sqlScript = new ClassPathResource(
                 "com/javaetmoi/core/batch/tasklet/TestRemoveSpringBatchHistoryTasklet.sql");
-        // The SimpleJdbcTestUtils is using the deprecated SimpleJdbcTemplate, so we don't have the
+        // The JdbcTestUtils is using the deprecated SimpleJdbcTemplate, so we don't have the
         // choice
-        SimpleJdbcTemplate simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
-        SimpleJdbcTestUtils.executeSqlScript(simpleJdbcTemplate, sqlScript, false);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        JdbcTestUtils.executeSqlScript(jdbcTemplate, sqlScript, false);
 
         // 2. Check the dataset before removing history
         List<JobInstance> jobInstances = jobExplorer.getJobInstances("jobTest", 0, 5);
