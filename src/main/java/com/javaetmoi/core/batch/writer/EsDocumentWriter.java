@@ -17,7 +17,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.elasticsearch.ElasticSearchException;
+import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
@@ -71,7 +71,7 @@ public class EsDocumentWriter implements ItemWriter<EsDocument> {
     private void processResponse(BulkResponse response) {
         if (response.hasFailures()) {
             String failureMessage = response.getItems()[0].getFailureMessage();
-            throw new ElasticSearchException("Bulk request failed. First failure message: " + failureMessage);
+            throw new ElasticsearchException("Bulk request failed. First failure message: " + failureMessage);
         }
         LOG.info("{} documents indexed into ElasticSearch in {} ms", response.getItems().length,
                 response.getTookInMillis());
