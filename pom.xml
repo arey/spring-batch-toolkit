@@ -56,7 +56,7 @@
     <!-- Version of third libraries -->
     <version.logback>1.0.13</version.logback>
     <version.slf4j>1.7.5</version.slf4j>
-    <version.spring-framework>4.0.0.RELEASE</version.spring-framework>
+    <version.spring-framework>4.0.1.RELEASE</version.spring-framework>
     <version.commons-lang3>3.1</version.commons-lang3>
     <version.commons-io>2.4</version.commons-io>
     <version.spring-batch>2.2.4.RELEASE</version.spring-batch>
