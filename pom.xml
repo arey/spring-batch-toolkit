@@ -60,7 +60,7 @@
     <version.commons-lang3>3.2.1</version.commons-lang3>
     <version.commons-io>2.4</version.commons-io>
     <version.spring-batch>2.2.6.RELEASE</version.spring-batch>
-    <version.elasticsearch>1.1.0</version.elasticsearch>
+    <version.elasticsearch>1.1.1</version.elasticsearch>
 
     <!-- * For testing purpose -->
     <version.junit>4.11</version.junit>
