@@ -61,7 +61,7 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
 <tr>
-    <td>0.3.0-SNAPSHOT</td><td>Spring Batch 3.0 upgrade</td><td></td>
+    <td>0.3.0-SNAPSHOT</td><td>next version</td><td>Spring Batch 3.0 upgrade</td>
   </tr>
   <tr>
     <td>0.2.0</td><td>05/11/2013</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
