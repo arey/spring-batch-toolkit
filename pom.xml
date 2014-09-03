@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.javaetmoi.core</groupId>
@@ -71,11 +72,9 @@
     <version.plugin.maven-resources-plugin>2.4.3</version.plugin.maven-resources-plugin>
     <version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
     <version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
-    <version.plugin.maven-release-plugin>2.2.2</version.plugin.maven-release-plugin>
-    
-    <!-- Version of maven extensions -->
-    <version.extension.wagon-webdav>1.0-beta-2</version.extension.wagon-webdav>
-    
+    <version.plugin.maven-release-plugin>2.5</version.plugin.maven-release-plugin>
+    <version.plugin.nexus-staging-maven-plugin>1.6.2</version.plugin.nexus-staging-maven-plugin>
+    <version.plugin.maven-gpg-plugin>1.5</version.plugin.maven-gpg-plugin>
 
     <!-- Source encoding -->
     <source.encoding>UTF-8</source.encoding>
@@ -154,6 +153,7 @@
       <version>${version.slf4j}</version>
     </dependency>
 
+
     <!-- H2 Embbeded database -->
     <dependency>
       <groupId>com.h2database</groupId>
@@ -173,14 +173,6 @@
   </dependencies>
 
   <build>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav</artifactId>
-        <version>${version.extension.wagon-webdav}</version>
-      </extension>
-    </extensions>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -212,54 +204,45 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <version>${version.plugin.maven-release-plugin}</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <useReleaseProfile>false</useReleaseProfile>
+          <releaseProfiles>release</releaseProfiles>
+          <goals>deploy</goals>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${version.plugin.maven-javadoc-plugin}</version>
       </plugin>
+      <!-- Nexus Staging Maven Plugin for Deployment and Release into Sonatype OSSRH -->
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>${version.plugin.nexus-staging-maven-plugin}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
-  <!-- Deploy releases and snapshots to the CloudBees maven repositories -->
+  <!-- Deploy snapshots to the Sonatype OSSRH (OSS Repository Hosting) -->
   <distributionManagement>
     <downloadUrl>https://github.com/arey/spring-batch-toolkit</downloadUrl>
-    <repository>
-      <id>javaetmoi-cloudbees-release</id>
-      <name>javaetmoi-cloudbees-release</name>
-      <url>dav:https://repository-javaetmoi.forge.cloudbees.com/release/</url>
-    </repository>
     <snapshotRepository>
-      <id>javaetmoi-cloudbees-snapshot</id>
-      <name>javaetmoi-cloudbees-snapshot</name>
-      <url>dav:https://repository-javaetmoi.forge.cloudbees.com/snapshot/</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
   </distributionManagement>
-
-  <repositories>
-    <repository>
-      <id>javaetmoi-cloudbees-release</id>
-      <name>javaetmoi-cloudbees-release</name>
-      <url>https://repository-javaetmoi.forge.cloudbees.com/release/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>javaetmoi-cloudbees-snapshot</id>
-      <name>javaetmoi-cloudbees-snapshot</name>
-      <url>https://repository-javaetmoi.forge.cloudbees.com/snapshot/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 
   <profiles>
     <profile>
@@ -315,6 +298,21 @@
                 <id>attach-sources</id>
                 <goals>
                   <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!--GPG Signed Artefacts required by Maven Central -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${version.plugin.maven-gpg-plugin}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
                 </goals>
               </execution>
             </executions>
