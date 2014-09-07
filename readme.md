@@ -19,16 +19,9 @@ Download the jar though Maven:
   <artifactId>spring-batch-toolkit</artifactId>
   <version>0.2.0</version>
 </dependency> 
-       
-<repository>
-  <id>javaetmoi-maven-release</id>
-  <releases>
-    <enabled>true</enabled>
-  </releases>
-  <name>Java & Moi Maven RELEASE Repository</name>
-  <url>http://repository-javaetmoi.forge.cloudbees.com/release/</url>
-</repository>
 ```
+
+The Spring Batch Toolkit artefacts are available from [Maven Central](http://repo1.maven.org/maven2/com/javaetmoi/core/spring-batch-toolkit/)
 
 ## Contributing to Spring Batch Tookit ##
 
