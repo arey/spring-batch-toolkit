@@ -23,6 +23,8 @@ Download the jar though Maven:
 
 The Spring Batch Toolkit artefacts are available from [Maven Central](http://repo1.maven.org/maven2/com/javaetmoi/core/spring-batch-toolkit/)
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.javaetmoi.core/spring-batch-toolkit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.javaetmoi.core/spring-batch-toolkit)
+
 ## Contributing to Spring Batch Tookit ##
 
 * Github is for social coding platform: if you want to write code, we encourage contributions through pull requests from [forks of this repository](http://help.github.com/forking/). If you want to contribute code this way, please reference a GitHub ticket as well covering the specific issue you are addressing.
