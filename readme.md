@@ -73,9 +73,10 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
 
 ## Build Status ##
 
-Travis : [![Build
+Travis: [![Build
 Status](https://travis-ci.org/arey/spring-batch-toolkit.png?branch=master)](https://travis-ci.org/arey/spring-batch-toolkit)
 
-Cloudbees Jenkins : [![Build
+Cloudbees Jenkins: [![Build
 Status](https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/badge/icon)](https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/)
 
+Coverage Status: [![Coverage Status](https://img.shields.io/coveralls/arey/spring-batch-toolkit.svg)](https://coveralls.io/r/arey/spring-batch-toolkit?branch=master)
