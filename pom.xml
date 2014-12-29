@@ -61,7 +61,7 @@
     <version.spring-framework>4.0.3.RELEASE</version.spring-framework>
     <version.commons-lang3>3.3.2</version.commons-lang3>
     <version.commons-io>2.4</version.commons-io>
-    <version.spring-batch>3.0.0.RELEASE</version.spring-batch>
+    <version.spring-batch>3.0.2.RELEASE</version.spring-batch>
     <version.elasticsearch>1.1.1</version.elasticsearch>
 
     <!-- * For testing purpose -->
