@@ -256,6 +256,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${version.plugin.maven-javadoc-plugin}</version>
+          <configuration>
+            <additionalparam>-Xdoclint:none</additionalparam>
+          </configuration>
       </plugin>
       <!-- Nexus Staging Maven Plugin for Deployment and Release into Sonatype OSSRH -->
       <plugin>
