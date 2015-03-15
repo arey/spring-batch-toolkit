@@ -1,400 +1,397 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.javaetmoi.core</groupId>
-  <artifactId>spring-batch-toolkit</artifactId>
-  <name>JavaEtMoi Core :: ${project.artifactId} - ${project.packaging}</name>
-  <version>0.3.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <description>Extension of the Spring Batch module</description>
-  <inceptionYear>2012</inceptionYear>
-  <url>https://github.com/arey/spring-batch-toolkit</url>
-
-  <developers>
-    <developer>
-      <id>arey</id>
-      <name>Antoine Rey</name>
-      <email>antoine@javaetmoi.com</email>
-      <url>http://javaetmoi.com</url>
-      <timezone>+1</timezone>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-    </developer>
-  </developers>
-
-  <!-- Continous Integration build hosted by CloudBees -->
-  <ciManagement>
-    <system>jenkins</system>
-    <url>https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/</url>
-  </ciManagement>
-  <issueManagement>
-    <system>github</system>
-    <url>https://github.com/arey/spring-batch-toolkit/issues</url>
-  </issueManagement>
-
-  <!-- Apache 2 license -->
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-    </license>
-  </licenses>
-
-
-  <!-- GitHub Software Configuration Management -->
-  <scm>
+    <groupId>com.javaetmoi.core</groupId>
+    <artifactId>spring-batch-toolkit</artifactId>
+    <name>JavaEtMoi Core :: ${project.artifactId} - ${project.packaging}</name>
+    <version>0.3.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <description>Extension of the Spring Batch module</description>
+    <inceptionYear>2012</inceptionYear>
     <url>https://github.com/arey/spring-batch-toolkit</url>
-    <connection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
+
+    <developers>
+        <developer>
+            <id>arey</id>
+            <name>Antoine Rey</name>
+            <email>antoine@javaetmoi.com</email>
+            <url>http://javaetmoi.com</url>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Java Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- Continous Integration build hosted by CloudBees -->
+    <ciManagement>
+        <system>jenkins</system>
+        <url>https://javaetmoi.ci.cloudbees.com/job/spring-batch-toolkit/</url>
+    </ciManagement>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/arey/spring-batch-toolkit/issues</url>
+    </issueManagement>
+
+    <!-- Apache 2 license -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
 
 
-
-  <properties>
- 	
-    <!-- Version of third libraries -->
-    <version.logback>1.1.2</version.logback>
-    <version.slf4j>1.7.7</version.slf4j>
-    <version.spring-framework>4.1.2.RELEASE</version.spring-framework>
-    <version.spring-integration>4.1.1.RELEASE</version.spring-integration>
-    <version.commons-lang3>3.3.2</version.commons-lang3>
-    <version.commons-io>2.4</version.commons-io>
-    <version.spring-batch>3.0.2.RELEASE</version.spring-batch>
-    <version.elasticsearch>1.1.1</version.elasticsearch>
-
-    <!-- * For testing purpose -->
-    <version.junit>4.11</version.junit>
-    <version.h2>1.4.177</version.h2>
-    <version.spring-elasticsearch>1.0.0</version.spring-elasticsearch>
+    <!-- GitHub Software Configuration Management -->
+    <scm>
+        <url>https://github.com/arey/spring-batch-toolkit</url>
+        <connection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
 
-    <!-- Version of maven plugins -->
-    <version.plugin.maven-eclipse-plugin>2.9</version.plugin.maven-eclipse-plugin>
-    <version.plugin.maven-compiler-plugin>2.3</version.plugin.maven-compiler-plugin>
-    <version.plugin.maven-resources-plugin>2.4.3</version.plugin.maven-resources-plugin>
-    <version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
-    <version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
-    <version.plugin.maven-release-plugin>2.5</version.plugin.maven-release-plugin>
-    <version.plugin.nexus-staging-maven-plugin>1.6.2</version.plugin.nexus-staging-maven-plugin>
-    <version.plugin.maven-gpg-plugin>1.5</version.plugin.maven-gpg-plugin>
-    <version.plugin.coveralls-maven-plugin>3.0.1</version.plugin.coveralls-maven-plugin>
-    <version.plugin.jacoco-maven-plugin>0.7.2.201409121644</version.plugin.jacoco-maven-plugin>
+    <properties>
 
-    <!-- Source encoding -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+        <!-- Version of third libraries -->
+        <version.logback>1.1.2</version.logback>
+        <version.slf4j>1.7.7</version.slf4j>
+        <version.spring-framework>4.1.2.RELEASE</version.spring-framework>
+        <version.spring-integration>4.1.1.RELEASE</version.spring-integration>
+        <version.commons-lang3>3.3.2</version.commons-lang3>
+        <version.commons-io>2.4</version.commons-io>
+        <version.spring-batch>3.0.2.RELEASE</version.spring-batch>
+        <version.elasticsearch>1.1.1</version.elasticsearch>
 
-  <dependencies>
-    <!-- Spring Batch -->
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-core</artifactId>
-      <version>${version.spring-batch}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-integration</artifactId>
-      <version>${version.spring-batch}</version>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.batch</groupId>
-      <artifactId>spring-batch-test</artifactId>
-      <version>${version.spring-batch}</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- Spring Test -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring Core -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring AOP -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring Beans -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring Context -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring Context -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-expression</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>    
-    <!-- Spring JDBC -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-    <!-- Spring Transaction -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>${version.spring-framework}</version>
-    </dependency>
-      <!-- Spring Integration -->
-      <dependency>
-          <groupId>org.springframework.integration</groupId>
-          <artifactId>spring-integration-core</artifactId>
-          <version>${version.spring-integration}</version>
-      </dependency>
-    <!-- Commons Lang -->
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>${version.commons-lang3}</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>${version.commons-io}</version>
-      <optional>true</optional> <!-- Used by Elasticsearch tasklets -->
-    </dependency>
-    <!-- Logger -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${version.logback}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>${version.slf4j}</version>
-    </dependency>
-
-    <!-- Elasticsearch -->
-    <dependency>
-      <groupId>org.elasticsearch</groupId>
-      <artifactId>elasticsearch</artifactId>
-      <version>${version.elasticsearch}</version>
-      <optional>true</optional>
-    </dependency>
-    <!-- * Spring Elasticsearch -->
-    <dependency>
-      <groupId>fr.pilato.spring</groupId>
-      <artifactId>spring-elasticsearch</artifactId>
-      <version>${version.spring-elasticsearch}</version>
-      <scope>test</scope>
-    </dependency>
+        <!-- * For testing purpose -->
+        <version.junit>4.11</version.junit>
+        <version.h2>1.4.177</version.h2>
+        <version.spring-elasticsearch>1.0.0</version.spring-elasticsearch>
 
 
+        <!-- Version of maven plugins -->
+        <version.plugin.maven-eclipse-plugin>2.9</version.plugin.maven-eclipse-plugin>
+        <version.plugin.maven-compiler-plugin>2.3</version.plugin.maven-compiler-plugin>
+        <version.plugin.maven-resources-plugin>2.4.3</version.plugin.maven-resources-plugin>
+        <version.plugin.maven-source-plugin>2.1.2</version.plugin.maven-source-plugin>
+        <version.plugin.maven-javadoc-plugin>2.7</version.plugin.maven-javadoc-plugin>
+        <version.plugin.maven-release-plugin>2.5</version.plugin.maven-release-plugin>
+        <version.plugin.nexus-staging-maven-plugin>1.6.2</version.plugin.nexus-staging-maven-plugin>
+        <version.plugin.maven-gpg-plugin>1.5</version.plugin.maven-gpg-plugin>
+        <version.plugin.coveralls-maven-plugin>3.0.1</version.plugin.coveralls-maven-plugin>
+        <version.plugin.jacoco-maven-plugin>0.7.2.201409121644</version.plugin.jacoco-maven-plugin>
 
-    <!-- H2 Embbeded database -->
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>${version.h2}</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- Tests -->
-    <!-- * JUnit -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
-      <scope>test</scope>
-    </dependency>
+        <!-- Source encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  </dependencies>
+    <dependencies>
+        <!-- Spring Batch -->
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+            <version>${version.spring-batch}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-integration</artifactId>
+            <version>${version.spring-batch}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-test</artifactId>
+            <version>${version.spring-batch}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Spring Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring AOP -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Beans -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring JDBC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Transaction -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${version.spring-framework}</version>
+        </dependency>
+        <!-- Spring Integration -->
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-core</artifactId>
+            <version>${version.spring-integration}</version>
+        </dependency>
+        <!-- Commons Lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.commons-lang3}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${version.commons-io}</version>
+            <optional>true</optional>
+            <!-- Used by Elasticsearch tasklets -->
+        </dependency>
+        <!-- Logger -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${version.plugin.maven-compiler-plugin}</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>${version.plugin.maven-resources-plugin}</version>
-        <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>${version.plugin.maven-source-plugin}</version>
-        <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>${version.plugin.maven-release-plugin}</version>
-        <configuration>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
-          <useReleaseProfile>false</useReleaseProfile>
-          <releaseProfiles>release</releaseProfiles>
-          <goals>deploy</goals>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${version.plugin.maven-javadoc-plugin}</version>
-          <configuration>
-            <additionalparam>-Xdoclint:none</additionalparam>
-          </configuration>
-      </plugin>
-      <!-- Nexus Staging Maven Plugin for Deployment and Release into Sonatype OSSRH -->
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>${version.plugin.nexus-staging-maven-plugin}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-			<plugin>
-			    <groupId>org.eluder.coveralls</groupId>
-			    <artifactId>coveralls-maven-plugin</artifactId>
-			    <version>${version.plugin.coveralls-maven-plugin}</version>
-			    <configuration>
-			        <repoToken>RPmmJ9e0KqHB8IuHiJ35k57UJRxyADBSx</repoToken>
-			    </configuration>
-			</plugin>
-			<plugin>
-			    <groupId>org.jacoco</groupId>
-			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>${version.plugin.jacoco-maven-plugin}</version>
-			    <executions>
-			        <execution>
-			            <id>prepare-agent</id>
-			            <goals>
-			                <goal>prepare-agent</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			</plugin>			
-    </plugins>
-  </build>
+        <!-- Elasticsearch -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>${version.elasticsearch}</version>
+            <optional>true</optional>
+        </dependency>
+        <!-- * Spring Elasticsearch -->
+        <dependency>
+            <groupId>fr.pilato.spring</groupId>
+            <artifactId>spring-elasticsearch</artifactId>
+            <version>${version.spring-elasticsearch}</version>
+            <scope>test</scope>
+        </dependency>
 
-  <!-- Deploy snapshots to the Sonatype OSSRH (OSS Repository Hosting) -->
-  <distributionManagement>
-    <downloadUrl>https://github.com/arey/spring-batch-toolkit</downloadUrl>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
 
-  <profiles>
-    <profile>
-      <id>eclipse</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <artifactId>maven-eclipse-plugin</artifactId>
-              <version>${version.plugin.maven-eclipse-plugin}</version>
-              <configuration>
-                <wtpversion>2.0</wtpversion>
-                <downloadSources>true</downloadSources>
-                <downloadJavadocs>true</downloadJavadocs>
-                <ajdtVersion>none</ajdtVersion>
-                <useProjectReferences>true</useProjectReferences>
-                <additionalProjectnatures>
-                  <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                </additionalProjectnatures>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
+        <!-- H2 Embbeded database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${version.h2}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Tests -->
+        <!-- * JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
 
-    <profile>
-      <!-- Specific profile for release or artifact deployment -->
-      <!-- Sources et javadoc are packaged -->
-      <id>release</id>
-      <build>
+    </dependencies>
+
+    <build>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-              <configuration>
-                  <additionalparam>-Xdoclint:none</additionalparam>
-              </configuration>
-          </plugin>
-          <!--GPG Signed Artefacts required by Maven Central -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>${version.plugin.maven-gpg-plugin}</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.plugin.maven-compiler-plugin}</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${version.plugin.maven-resources-plugin}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${version.plugin.maven-source-plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${version.plugin.maven-release-plugin}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${version.plugin.maven-javadoc-plugin}</version>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+            <!-- Nexus Staging Maven Plugin for Deployment and Release into Sonatype OSSRH -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${version.plugin.nexus-staging-maven-plugin}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>${version.plugin.coveralls-maven-plugin}</version>
+                <configuration>
+                    <repoToken>RPmmJ9e0KqHB8IuHiJ35k57UJRxyADBSx</repoToken>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${version.plugin.jacoco-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-      </build>
-    </profile>
-  </profiles>
+    </build>
+
+    <!-- Deploy snapshots to the Sonatype OSSRH (OSS Repository Hosting) -->
+    <distributionManagement>
+        <downloadUrl>https://github.com/arey/spring-batch-toolkit</downloadUrl>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>eclipse</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-eclipse-plugin</artifactId>
+                            <version>${version.plugin.maven-eclipse-plugin}</version>
+                            <configuration>
+                                <wtpversion>2.0</wtpversion>
+                                <downloadSources>true</downloadSources>
+                                <downloadJavadocs>true</downloadJavadocs>
+                                <ajdtVersion>none</ajdtVersion>
+                                <useProjectReferences>true</useProjectReferences>
+                                <additionalProjectnatures>
+                                    <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                                </additionalProjectnatures>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <!-- Specific profile for release or artifact deployment -->
+            <!-- Sources et javadoc are packaged -->
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                    <!--GPG Signed Artefacts required by Maven Central -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${version.plugin.maven-gpg-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
