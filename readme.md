@@ -7,8 +7,9 @@ This toolkit provides additional features to the Spring Batch framework.
 * Tasklet used to **delete data from Spring Batch Metadata tables** that are N months old.
 * **Elasticsearch** tasklets, processor and writer to create/setup/delete indices and write documents.
 * Logging Spring Batch listener
-* Spring Integration Endpoints that launch jobs, wait the end of a job and send email with job information.
-
+* **Spring Integration Endpoints** that launch jobs, wait the end of a job and send email with job information.
+* Tasklet that uncompress a zip file to a working directory.
+* Tasklet that deletes a directory recursively.
 
 ## Quick Start ##
 
@@ -57,7 +58,10 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
 <tr>
-    <td>0.3.0-SNAPSHOT</td><td>next version</td><td>Spring Batch 3.0 upgrade<br>Spring Batch Integration and Admin Endpoints</td>
+    <td>1.0.0-SNAPSHOT</td><td>next version</td>
+    <td>Spring Batch 3.0 upgrade
+    <br>Spring Batch Integration and Admin Endpoints
+    <br>Add UncompressTasklet and DeleteDirectoryTasklet</td>
   </tr>
   <tr>
     <td>0.2.0</td><td>05/11/2013</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
