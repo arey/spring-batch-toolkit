@@ -23,7 +23,7 @@ import org.springframework.integration.annotation.Router;
 import javax.annotation.PostConstruct;
 
 /**
- * Wait the end of of job execution before routing it.
+ * Wait the end of job execution before routing it.
  *
  * <p>
  * Exit status is used to choose the returned channel.<br>
