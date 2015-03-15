@@ -7,6 +7,7 @@ This toolkit provides additional features to the Spring Batch framework.
 * Tasklet used to **delete data from Spring Batch Metadata tables** that are N months old.
 * **Elasticsearch** tasklets, processor and writer to create/setup/delete indices and write documents.
 * Logging Spring Batch listener
+* Spring Integration Endpoints that launch jobs, wait the end of a job and send email with job information.
 
 
 ## Quick Start ##
@@ -37,7 +38,7 @@ git clone git://github.com/arey/spring-batch-toolkit.git
 Compile the code with maven:
 mvn clean install
 
-If you're using an IDE that supports Maven-based projects (InteliJ Idea, Netbeans or m2Eclipse), you can import the project directly from its POM. 
+If you're using an IDE that supports Maven-based projects (IntelliJ Idea, Netbeans or m2Eclipse), you can import the project directly from its POM.
 Otherwise, generate IDE metadata with the related IDE maven plugin:
 mvn eclipse:clean eclipse:eclipse
 
@@ -56,7 +57,7 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
 <tr>
-    <td>0.3.0-SNAPSHOT</td><td>next version</td><td>Spring Batch 3.0 upgrade</td>
+    <td>0.3.0-SNAPSHOT</td><td>next version</td><td>Spring Batch 3.0 upgrade<br>Spring Batch Integration and Admin Endpoints</td>
   </tr>
   <tr>
     <td>0.2.0</td><td>05/11/2013</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
