@@ -15,7 +15,8 @@ import java.util.Set;
  * Blocks launch of the same job twice.
  * <p>
  * This {@see FileListFilter} could be use in a use case where a file triggers the execution of a Spring Batch job.<br>
- * When a received file has launched a job, all other files which triggers the same job are keep in a waiting list until the job is finished.
+ * When a received file has launched a job, all other files which triggers the same job are keep in a waiting list until the job is finished.<br>
+ * Do not forget to call the {@see RollbackProcessedFileServiceActivator} at the end of the job execution.
  * </p>
  */
 public class AcceptOnceFilePerJobListFilter extends AbstractFileListFilter<File> implements ReversibleFileListFilter<File> {
