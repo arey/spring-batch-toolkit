@@ -19,7 +19,7 @@ Download the jar though Maven:
 <dependency>
   <groupId>com.javaetmoi.core</groupId>
   <artifactId>spring-batch-toolkit</artifactId>
-  <version>0.2.0</version>
+  <version>1.0.0</version>
 </dependency> 
 ```
 
@@ -58,16 +58,16 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
 <tr>
-    <td>1.0.0-SNAPSHOT</td><td>next version</td>
+    <td>1.0.0</td><td>2015-06-15</td>
     <td>Spring Batch 3.0 upgrade
     <br>Spring Batch Integration and Admin Endpoints
     <br>Add UncompressTasklet and DeleteDirectoryTasklet</td>
   </tr>
   <tr>
-    <td>0.2.0</td><td>05/11/2013</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
+    <td>0.2.0</td><td>2013-11-05</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
   </tr>
   <tr>
-    <td>0.1.0</td><td>10/07/2013</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
+    <td>0.1.0</td><td>2013-07-10</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
   </tr>
 </table>
 
