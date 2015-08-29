@@ -5,7 +5,7 @@
     <groupId>com.javaetmoi.core</groupId>
     <artifactId>spring-batch-toolkit</artifactId>
     <name>JavaEtMoi Core :: ${project.artifactId} - ${project.packaging}</name>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Extension of the Spring Batch module</description>
     <inceptionYear>2012</inceptionYear>
@@ -48,7 +48,7 @@
         <url>https://github.com/arey/spring-batch-toolkit</url>
         <connection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/arey/spring-batch-toolkit.git</developerConnection>
-        <tag>1.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
