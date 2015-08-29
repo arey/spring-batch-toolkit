@@ -19,7 +19,7 @@ Download the jar though Maven:
 <dependency>
   <groupId>com.javaetmoi.core</groupId>
   <artifactId>spring-batch-toolkit</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency> 
 ```
 
@@ -56,6 +56,10 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
 <table>
   <tr>
     <th>Version</th><th>Release date</th><th>Features</th>
+  </tr>
+  <tr>
+    <td>1.0.1</td><td>2015-08-29</td>
+    <td>Spring Framework 4.2 support</td>
   </tr>
 <tr>
     <td>1.0.0</td><td>2015-06-15</td>
