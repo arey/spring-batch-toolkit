@@ -61,7 +61,7 @@
         <version.spring-integration>4.1.1.RELEASE</version.spring-integration>
         <version.commons-lang3>3.5</version.commons-lang3>
         <version.commons-io>2.5</version.commons-io>
-        <version.spring-batch>3.0.5.RELEASE</version.spring-batch>
+        <version.spring-batch>3.0.7.RELEASE</version.spring-batch>
         <version.elasticsearch>1.1.1</version.elasticsearch>
 
         <!-- * For testing purpose -->
