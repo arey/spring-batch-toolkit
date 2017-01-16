@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.indices.IndexMissingException;
+import org.elasticsearch.index.IndexNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.StepContribution;
@@ -53,7 +53,7 @@ public class DeleteElasticIndexTasklet implements Tasklet {
                 throw new RuntimeException("Index deletion has not been acknowledged");
             }
             LOG.info("Index {} deleted", indexName);
-        } catch (IndexMissingException e) {
+        } catch (IndexNotFoundException e) {
             LOG.info("The index {} does not exist. Thus nothing to delete.", indexName);
         }
         return RepeatStatus.FINISHED;

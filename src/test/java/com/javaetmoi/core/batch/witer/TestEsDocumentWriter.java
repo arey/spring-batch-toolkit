@@ -23,8 +23,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.admin.indices.status.IndicesStatusRequest;
-import org.elasticsearch.action.admin.indices.status.IndicesStatusResponse;
+import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequest;
+import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.junit.After;
@@ -84,8 +84,8 @@ public class TestEsDocumentWriter {
         writer.write(documents);
         
         ElasticSearchHelper.refreshIndex(client, INDEX);
-        IndicesStatusResponse response = client.admin().indices().status(new IndicesStatusRequest(INDEX)).get();
-        assertEquals(2, response.getIndex(INDEX).getDocs().getNumDocs());
+        IndicesStatsResponse response = client.admin().indices().stats(new IndicesStatsRequest().types(INDEX)).get();
+        assertEquals(2, response.getIndex(INDEX).getTotal().getDocs().getCount());
     }
     
     static class Customer {

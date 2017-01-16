@@ -62,12 +62,12 @@
         <version.commons-lang3>3.5</version.commons-lang3>
         <version.commons-io>2.5</version.commons-io>
         <version.spring-batch>3.0.7.RELEASE</version.spring-batch>
-        <version.elasticsearch>1.1.1</version.elasticsearch>
+        <version.elasticsearch>2.1.0</version.elasticsearch>
 
         <!-- * For testing purpose -->
         <version.junit>4.12</version.junit>
         <version.h2>1.4.193</version.h2>
-        <version.spring-elasticsearch>1.0.0</version.spring-elasticsearch>
+        <version.spring-elasticsearch>2.1.0</version.spring-elasticsearch>
 
 
         <!-- Version of maven plugins -->
