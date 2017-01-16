@@ -66,7 +66,7 @@
 
         <!-- * For testing purpose -->
         <version.junit>4.12</version.junit>
-        <version.h2>1.4.177</version.h2>
+        <version.h2>1.4.193</version.h2>
         <version.spring-elasticsearch>1.0.0</version.spring-elasticsearch>
 
 
