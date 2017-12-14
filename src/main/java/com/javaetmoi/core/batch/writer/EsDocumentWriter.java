@@ -74,7 +74,7 @@ public class EsDocumentWriter implements ItemWriter<EsDocument> {
             throw new ElasticsearchException("Bulk request failed. First failure message: " + failureMessage);
         }
         LOG.info("{} documents indexed into ElasticSearch in {} ms", response.getItems().length,
-                response.getTookInMillis());
+                response.getIngestTookInMillis());
     }
 
     /**

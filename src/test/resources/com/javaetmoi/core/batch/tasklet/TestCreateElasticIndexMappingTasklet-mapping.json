@@ -1,7 +1,7 @@
 {
     "properties": {
       "name": {
-        "type": "string",
+        "type": "text",
         "analyzer": "standard"
       }
   }

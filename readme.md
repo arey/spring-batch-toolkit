@@ -27,6 +27,14 @@ The Spring Batch Toolkit artefacts are available from [Maven Central](http://rep
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.javaetmoi.core/spring-batch-toolkit/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.javaetmoi.core/spring-batch-toolkit)
 
+Use the below compatibility matrix to choose the appropriated version:
+
+| spring-batch-toolkit | spring-batch | spring-framework | elasticsearch  | Release date |
+|:--------------------:|:------------:|:----------------:|:--------------:|:------------:|
+|      4.0-SNAPSHOT    |  4.0         |       5.0        |  6.0           |              |
+|          1.0.1       |  2.2 - 3.x   |     4.0 - 4.x    |  4.2.3         |  2015-06-15  |
+|          0.1.0       |  2.0 - 2.1   |     3.0 - 3.x    |  N/A           |  2013-07-10  |
+
 ## Contributing to Spring Batch Tookit ##
 
 * Github is for social coding platform: if you want to write code, we encourage contributions through pull requests from [forks of this repository](http://help.github.com/forking/). If you want to contribute code this way, please reference a GitHub ticket as well covering the specific issue you are addressing.
@@ -43,6 +51,18 @@ If you're using an IDE that supports Maven-based projects (IntelliJ Idea, Netbea
 Otherwise, generate IDE metadata with the related IDE maven plugin:
 mvn eclipse:clean eclipse:eclipse
 
+### Unit test execution ###
+
+By upgrading the Elasticsearch version from 2.1 to 6.0, we used to migrate the unit tests
+in charge of testing Elasticsearch tasklets et writers. They now inherit from the ESIntegTestCase 
+class provided by the org.elasticsearch.test:framework artefact.
+
+At startup, Elasticsearch checks for duplicate class files across the classpath causing "jar hell".
+All duplicated classes have been excluded from the pom.xml.
+For running theses tests from IntelliJ IDEA, you have to do some tricks.
+See the [Elasticsearch Contributing guide](https://github.com/elastic/elasticsearch/blob/master/CONTRIBUTING.md)
+ 
+
 ## Documentation ##
 
 French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
@@ -58,6 +78,13 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
   <tr>
+    <td>4.0.0-SNAPSHOT</td><td>2017-12-14</td>
+    <td>Spring Batch 4.0 upgrade
+    <br>Spring Framework 5.0 support
+    <br>Elasticsearch 6.0 upgrade
+    </td>
+  </tr>
+  <tr>
     <td>1.0.1</td><td>2015-08-29</td>
     <td>Spring Framework 4.2 support</td>
   </tr>
@@ -68,10 +95,14 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <br>Add UncompressTasklet and DeleteDirectoryTasklet</td>
   </tr>
   <tr>
-    <td>0.2.0</td><td>2013-11-05</td><td>Spring Batch 2.2 upgrade<br>Elasticsearch tasklets and writer<br>Logging Spring Batch listener</td>
+    <td>0.2.0</td><td>2013-11-05</td>
+    <td>Spring Batch 2.2 upgrade
+    <br>Elasticsearch tasklets and writer
+    <br>Logging Spring Batch listener</td>
   </tr>
   <tr>
-    <td>0.1.0</td><td>2013-07-10</td><td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
+    <td>0.1.0</td><td>2013-07-10</td>
+    <td>RemoveSpringBatchHistoryTasklet, partitioning and parallel steps</td>
   </tr>
 </table>
 

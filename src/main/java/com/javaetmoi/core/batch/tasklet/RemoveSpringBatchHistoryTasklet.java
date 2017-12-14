@@ -116,7 +116,7 @@ public class RemoveSpringBatchHistoryTasklet implements Tasklet, InitializingBea
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(jdbcTemplate);
+        Assert.notNull(jdbcTemplate, "The jdbcTemplate must not be null");
     }
 
 }

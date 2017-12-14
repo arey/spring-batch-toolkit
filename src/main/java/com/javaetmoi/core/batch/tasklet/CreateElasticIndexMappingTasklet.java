@@ -1,11 +1,11 @@
 /**
  * Copyright 2013 the original author or authors.
- * 
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * <p>
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.StepContribution;
@@ -32,23 +33,25 @@ import org.springframework.util.Assert;
 
 /**
  * Add an Elasticsearch mapping definition for a type into one index.
- * 
+ *
  * <p>
- * Mapping definition should be provided as JSON file / resource.
+ * Mapping definition should be provided as JSON or YAML file / resource.
  * </p>
- * 
+ *
  */
 public class CreateElasticIndexMappingTasklet implements Tasklet {
 
     private static final Logger LOG = LoggerFactory.getLogger(CreateElasticIndexMappingTasklet.class);
 
-    private Client              esClient;
+    private Client esClient;
 
-    private String              indexName;
+    private String indexName;
 
-    private Resource            indexMapping;
+    private Resource indexMapping;
 
-    private String              mappingType;
+    private String mappingType;
+
+    private XContentType contentType = XContentType.JSON;
 
     @PostConstruct
     public void afterPropertiesSet() {
@@ -56,6 +59,7 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
         Assert.notNull(indexName, "indexName must not be null");
         Assert.notNull(indexMapping, "indexMapping must not be null");
         Assert.notNull(mappingType, "mappingType must not be null");
+        Assert.notNull(contentType, "contentType must not be null");
     }
 
     @Override
@@ -64,7 +68,7 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
 
         String source = IOUtils.toString(indexMapping.getInputStream(), "UTF-8");
         PutMappingRequestBuilder request = esClient.admin().indices().preparePutMapping(indexName);
-        request.setSource(source).setType(mappingType);
+        request.setSource(source, contentType).setType(mappingType);
         PutMappingResponse response = request.execute().actionGet();
         if (!response.isAcknowledged()) {
             throw new RuntimeException("The index mappings has not been acknowledged");
@@ -79,7 +83,7 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
 
     /**
      * Sets the Elasticsearch client used to defined index mapping.
-     * 
+     *
      * @param esClient
      *            Elasticsearch client
      */
@@ -89,7 +93,7 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
 
     /**
      * Sets the name of the index where documents will be stored
-     * 
+     *
      * @param indexName
      *            name of the Elasticsearch index
      */
@@ -101,7 +105,7 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
      * Sets the JSON resource defining index mapping.
      * <p>
      * File has to be encoded in UTF-8.
-     * 
+     *
      * @param indexMapping
      *            Spring resource descriptor, such as a file or class path resource.
      */
@@ -111,12 +115,21 @@ public class CreateElasticIndexMappingTasklet implements Tasklet {
 
     /**
      * Sets the type of the Elasticsearch mapping definition.
-     * 
+     *
      * @param mappingType
      *            type of the mapping definition
      */
     public void setMappingType(String mappingType) {
         this.mappingType = mappingType;
+    }
+
+    /**
+     * Set the Content type of the Elasticsearch mapping file.
+     *
+     * @param contentType JSON (default) or YAML
+     */
+    public void setContentType(XContentType contentType) {
+        this.contentType = contentType;
     }
 
 }

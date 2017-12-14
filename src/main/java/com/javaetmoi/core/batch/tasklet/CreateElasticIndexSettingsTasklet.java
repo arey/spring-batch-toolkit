@@ -1,11 +1,11 @@
 /**
  * Copyright 2013 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -20,6 +20,7 @@ import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequest;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.StepContribution;
@@ -41,21 +42,24 @@ public class CreateElasticIndexSettingsTasklet implements Tasklet {
     private String              indexName;
 
     private Resource            indexSettings;
-    
+
+    private XContentType        contentType = XContentType.JSON;
+
     @PostConstruct
     public void afterPropertiesSet() {
         Assert.notNull(esClient, "esClient must not be null");
         Assert.notNull(indexName, "indexName must not be null");
         Assert.notNull(indexSettings, "indexSettings must not be null");
-    }    
+        Assert.notNull(contentType, "contentType must not be null");
+    }
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         LOG.debug("Creating the index {} settings", indexName);
-        
+
         String source = IOUtils.toString(indexSettings.getInputStream(), "UTF-8");
         CreateIndexRequestBuilder createIndexReq = esClient.admin().indices().prepareCreate(indexName);
-        createIndexReq.setSettings(source);
+        createIndexReq.setSettings(source, contentType);
         CreateIndexResponse response = createIndexReq.execute().actionGet();
         if (!response.isAcknowledged()) {
             throw new RuntimeException("The index settings has not been acknowledged");
@@ -69,7 +73,7 @@ public class CreateElasticIndexSettingsTasklet implements Tasklet {
 
     /**
      * Sets the Elasticsearch client used to defined index settings.
-     * 
+     *
      * @param esClient
      *            Elasticsearch client
      */
@@ -81,7 +85,7 @@ public class CreateElasticIndexSettingsTasklet implements Tasklet {
      * Sets the name of the index where documents will be stored
      * <p>
      * File has to be encoded in UTF-8.
-     * 
+     *
      * @param indexName
      *            name of the Elasticsearch index
      */
@@ -89,14 +93,24 @@ public class CreateElasticIndexSettingsTasklet implements Tasklet {
         this.indexName = indexName;
     }
 
-    
+
     /**
      * Sets the JSON resource defining index settings.
-     * 
+     *
      * @param indexSettings
      *            Spring resource descriptor, such as a file or class path resource.
-     */    
+     */
     public void setIndexSettings(Resource indexSettings) {
         this.indexSettings = indexSettings;
+    }
+
+
+    /**
+     * Set the Content type of the index settings file.
+     *
+     * @param contentType JSON (default) or YAML
+     */
+    public void setContentType(XContentType contentType) {
+        this.contentType = contentType;
     }
 }

@@ -75,14 +75,14 @@
             ]]></value>
     </property>
     <property name="preparedStatementSetter">
-      <bean class="org.springframework.batch.core.resource.ListPreparedStatementSetter">
-        <property name="parameters">
+      <bean class="org.springframework.batch.item.database.support.ListPreparedStatementSetter">
+        <constructor-arg>
           <list>
             <!-- SPeL parameters order is important because it referes to "where album_id >= ? and album_id <= ?" -->
             <value>#{stepExecutionContext[minValue]}</value>
             <value>#{stepExecutionContext[maxValue]}</value>
           </list>
-        </property>
+        </constructor-arg>
       </bean>
     </property>
   </bean>

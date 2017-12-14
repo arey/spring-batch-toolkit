@@ -13,23 +13,19 @@
  */
 package com.javaetmoi.core.batch.tasklet;
 
-import static org.junit.Assert.*;
-
-import java.util.concurrent.ExecutionException;
-
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.IndicesAdminClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Unit test of the {@link CreateElasticIndexSettingsTasklet}
@@ -37,26 +33,33 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author Antoine
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {"classpath:com/javaetmoi/core/batch/tasklet/applicationContext-elasticsearch.xml"})
-public class TestCreateElasticIndexSettingsTasklet {
+@ESIntegTestCase.ClusterScope(scope = ESIntegTestCase.Scope.SUITE)
+@RunWith(com.carrotsearch.randomizedtesting.RandomizedRunner.class)
+public class TestCreateElasticIndexSettingsTasklet extends ESIntegTestCase {
 
     private static final String              INDEX     = "bank";
 
-    @Autowired
     private Client                           client;
 
     private CreateElasticIndexSettingsTasklet tasklet;
 
+    @Override
+    protected Settings nodeSettings(int nodeOrdinal) {
+        return Settings.builder().put(super.nodeSettings(nodeOrdinal)).build();
+    }
+
     @Before
-    public void setUp()  {
+    public void setUp() throws Exception {
+        super.setUp();
+        client = client();
         tasklet = new CreateElasticIndexSettingsTasklet();
         tasklet.setEsClient(client);
     }
 
     @After
-    public void tearDown() throws InterruptedException, ExecutionException {
+    public void tearDown() throws Exception {
         client.admin().indices().delete(new DeleteIndexRequest(INDEX)).get();
+        super.tearDown();
     }
 
     @Test
@@ -69,6 +72,7 @@ public class TestCreateElasticIndexSettingsTasklet {
                 "com/javaetmoi/core/batch/tasklet/TestCreateElasticIndexSettingsTasklet-settings.json");
         tasklet.setIndexSettings(resource);
         tasklet.setIndexName(INDEX);
+        tasklet.setContentType(XContentType.JSON);
         tasklet.execute(null, null);
         
         assertTrue(admin.exists(new IndicesExistsRequest(INDEX)).get().isExists());

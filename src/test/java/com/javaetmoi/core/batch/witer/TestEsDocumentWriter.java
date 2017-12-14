@@ -13,32 +13,30 @@
  */
 package com.javaetmoi.core.batch.witer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
+import com.javaetmoi.core.batch.processor.EsDocumentProcessor;
+import com.javaetmoi.core.batch.tasklet.ElasticSearchHelper;
+import com.javaetmoi.core.batch.writer.EsDocument;
+import com.javaetmoi.core.batch.writer.EsDocumentWriter;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.stats.IndicesStatsRequest;
 import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.javaetmoi.core.batch.processor.EsDocumentProcessor;
-import com.javaetmoi.core.batch.tasklet.ElasticSearchHelper;
-import com.javaetmoi.core.batch.writer.EsDocument;
-import com.javaetmoi.core.batch.writer.EsDocumentWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -47,21 +45,22 @@ import com.javaetmoi.core.batch.writer.EsDocumentWriter;
  * @author Antoine
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {"classpath:com/javaetmoi/core/batch/tasklet/applicationContext-elasticsearch.xml"})
-public class TestEsDocumentWriter {
+@ESIntegTestCase.ClusterScope(scope = ESIntegTestCase.Scope.SUITE)
+@RunWith(com.carrotsearch.randomizedtesting.RandomizedRunner.class)
+public class TestEsDocumentWriter extends ESIntegTestCase {
     
     private static final String              INDEX     = "bank";
     
     private static final String              TYPE = "customer";
 
-    @Autowired
     private Client                           client;
 
     private EsDocumentWriter writer;
 
     @Before
-    public void setUp() throws InterruptedException, ExecutionException {
+    public void setUp() throws Exception {
+        super.setUp();
+        client = client();
         writer = new EsDocumentWriter();
         writer.setEsClient(client);
         writer.setIndexName(INDEX);
@@ -70,8 +69,9 @@ public class TestEsDocumentWriter {
     }
     
     @After
-    public void tearDown() throws InterruptedException, ExecutionException {
+    public void tearDown() throws Exception {
         client.admin().indices().delete(new DeleteIndexRequest(INDEX)).get();
+        super.tearDown();
     }    
     
     @Test
@@ -85,7 +85,7 @@ public class TestEsDocumentWriter {
         
         ElasticSearchHelper.refreshIndex(client, INDEX);
         IndicesStatsResponse response = client.admin().indices().stats(new IndicesStatsRequest().types(INDEX)).get();
-        assertEquals(2, response.getIndex(INDEX).getTotal().getDocs().getCount());
+        assertEquals(2, response.getIndex(INDEX).getPrimaries().getDocs().getCount());
     }
     
     static class Customer {
