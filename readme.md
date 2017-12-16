@@ -19,7 +19,7 @@ Download the jar though Maven:
 <dependency>
   <groupId>com.javaetmoi.core</groupId>
   <artifactId>spring-batch-toolkit</artifactId>
-  <version>1.0.1</version>
+  <version>4.0.0</version>
 </dependency> 
 ```
 
@@ -31,7 +31,7 @@ Use the below compatibility matrix to choose the appropriated version:
 
 | spring-batch-toolkit | spring-batch | spring-framework | elasticsearch  | Release date |
 |:--------------------:|:------------:|:----------------:|:--------------:|:------------:|
-|      4.0-SNAPSHOT    |  4.0         |       5.0        |  6.0           |              |
+|          4.0.0       |  4.0         |       5.0        |  6.0           |              |
 |          1.0.1       |  2.2 - 3.x   |     4.0 - 4.x    |  4.2.3         |  2015-06-15  |
 |          0.1.0       |  2.0 - 2.1   |     3.0 - 3.x    |  N/A           |  2013-07-10  |
 
@@ -78,7 +78,7 @@ French articles on the [javaetmoi.com](http://javaetmoi.com) blog:
     <th>Version</th><th>Release date</th><th>Features</th>
   </tr>
   <tr>
-    <td>4.0.0-SNAPSHOT</td><td>2017-12-14</td>
+    <td>4.0.0</td><td>2017-12-15</td>
     <td>Spring Batch 4.0 upgrade
     <br>Spring Framework 5.0 support
     <br>Elasticsearch 6.0 upgrade
