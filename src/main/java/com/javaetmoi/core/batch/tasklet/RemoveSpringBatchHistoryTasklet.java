@@ -70,27 +70,27 @@ public class RemoveSpringBatchHistoryTasklet implements Tasklet, InitializingBea
         LOG.info("Remove the Spring Batch history before the {}", df.format(date));
 
         int rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_STEP_EXECUTION_CONTEXT), date);
-        LOG.info("Deleted rows number from the BATCH_STEP_EXECUTION_CONTEXT table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}STEP_EXECUTION_CONTEXT table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_STEP_EXECUTION), date);
-        LOG.info("Deleted rows number from the BATCH_STEP_EXECUTION table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}STEP_EXECUTION table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_JOB_EXECUTION_CONTEXT), date);
-        LOG.info("Deleted rows number from the BATCH_JOB_EXECUTION_CONTEXT table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}JOB_EXECUTION_CONTEXT table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_JOB_EXECUTION_PARAMS), date);
-        LOG.info("Deleted rows number from the BATCH_JOB_EXECUTION_PARAMS table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}JOB_EXECUTION_PARAMS table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_JOB_EXECUTION), date);
-        LOG.info("Deleted rows number from the BATCH_JOB_EXECUTION table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}JOB_EXECUTION table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         rowCount = jdbcTemplate.update(getQuery(SQL_DELETE_BATCH_JOB_INSTANCE));
-        LOG.info("Deleted rows number from the BATCH_JOB_INSTANCE table: {}", rowCount);
+        LOG.info("Deleted rows number from the {}JOB_INSTANCE table: {}", tablePrefix, rowCount);
         totalCount += rowCount;
 
         contribution.incrementWriteCount(totalCount);
