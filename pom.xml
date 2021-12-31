@@ -65,7 +65,7 @@
         <version.elasticsearch>6.0.1</version.elasticsearch>
 
         <!-- * For testing purpose -->
-        <version.junit>4.12</version.junit>
+        <version.junit>4.13.2</version.junit>
         <version.h2>1.4.196</version.h2>
 
         <!-- Version of maven plugins -->
