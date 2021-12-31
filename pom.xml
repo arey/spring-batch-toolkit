@@ -66,7 +66,7 @@
 
         <!-- * For testing purpose -->
         <version.junit>4.13.2</version.junit>
-        <version.h2>1.4.196</version.h2>
+        <version.h2>1.4.200</version.h2>
 
         <!-- Version of maven plugins -->
         <version.plugin.maven-eclipse-plugin>2.9</version.plugin.maven-eclipse-plugin>
