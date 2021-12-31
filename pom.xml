@@ -57,7 +57,7 @@
         <!-- Version of third libraries -->
         <version.log4j>2.17.1</version.log4j>
         <version.slf4j>1.7.22</version.slf4j>
-        <version.spring-framework>5.0.7.RELEASE</version.spring-framework>
+        <version.spring-framework>5.3.14</version.spring-framework>
         <version.spring-integration>5.0.0.RELEASE</version.spring-integration>
         <version.commons-lang3>3.7</version.commons-lang3>
         <version.commons-io>2.6</version.commons-io>
